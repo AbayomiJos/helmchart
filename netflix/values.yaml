@@ -23,8 +23,8 @@ ingress:
   enabled: true # Enable ingress
   className: nginx # Use NGINX Ingress Controller
   annotations:
-    # nginx.ingress.kubernetes.io/use-regex: "true"           # ← ADDED: Enables regex matching in NGINX
-    # nginx.ingress.kubernetes.io/rewrite-target: /$2         # Keeps your original rewrite (strips /netflix prefix)
+    nginx.ingress.kubernetes.io/use-regex: "true"           # ← ADDED: Enables regex matching in NGINX
+    nginx.ingress.kubernetes.io/rewrite-target: /$2         # Keeps your original rewrite (strips /netflix prefix)
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"    # Optional but fine to keep
   hosts:
     - host: "" # Empty host = path-based routing (catch-all on your single LoadBalancer)
