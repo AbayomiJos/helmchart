@@ -1,45 +1,59 @@
-# Default values for argocdhelm.
 replicaCount: 1
+
 image:
   repository: devabayomi/netflix
   pullPolicy: IfNotPresent
   tag: "latest"
+
 imagePullSecrets: []
+
 nameOverride: ""
 fullnameOverride: "netflix"
+
 serviceAccount:
   create: true
   automount: true
   annotations: {}
   name: ""
+
 podAnnotations: {}
 podLabels: {}
+
 podSecurityContext: {}
 securityContext: {}
+
 service:
-  type: ClusterIP # Changed from LoadBalancer
+  type: ClusterIP
   port: 3000
+
 ingress:
-  enabled: true # Enable ingress
-  className: nginx # Use NGINX Ingress Controller
+  enabled: true
+  className: nginx
+
   annotations:
-    nginx.ingress.kubernetes.io/use-regex: "true"           # ← ADDED: Enables regex matching in NGINX
-    nginx.ingress.kubernetes.io/rewrite-target: /$2         # Keeps your original rewrite (strips /netflix prefix)
-    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"    # Optional but fine to keep
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+
   hosts:
-    - host: "" # Empty host = path-based routing (catch-all on your single LoadBalancer)
+    - host: ""
       paths:
         - path: /netflix(/|$)(.*)
-          pathType: ImplementationSpecific                  # ← FIXED: Required for regex paths!
+          pathType: Prefix
+
   tls: []
+
 resources: {}
+
 autoscaling:
   enabled: false
   minReplicas: 1
   maxReplicas: 5
   targetCPUUtilizationPercentage: 80
+
 volumes: []
 volumeMounts: []
+
 nodeSelector: {}
 tolerations: []
 affinity: {}
