@@ -17,19 +17,20 @@ podLabels: {}
 podSecurityContext: {}
 securityContext: {}
 service:
-  type: ClusterIP   # Changed from LoadBalancer
+  type: ClusterIP # Changed from LoadBalancer
   port: 3000
 ingress:
-  enabled: true     # Enable ingress
-  className: nginx  # Use NGINX Ingress Controller
+  enabled: true # Enable ingress
+  className: nginx # Use NGINX Ingress Controller
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
-    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+    nginx.ingress.kubernetes.io/use-regex: "true"           # ← ADDED: Enables regex matching in NGINX
+    nginx.ingress.kubernetes.io/rewrite-target: /$2         # Keeps your original rewrite (strips /netflix prefix)
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"    # Optional but fine to keep
   hosts:
-    - host: ""      # Empty host = path-based routing on the single LB
+    - host: "" # Empty host = path-based routing (catch-all on your single LoadBalancer)
       paths:
         - path: /netflix(/|$)(.*)
-          pathType: Prefix
+          pathType: ImplementationSpecific                  # ← FIXED: Required for regex paths!
   tls: []
 resources: {}
 autoscaling:
