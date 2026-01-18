@@ -1,15 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "argocdhelm.fullname" . }}
-  labels:
-    {{- include "argocdhelm.labels" . | nindent 4 }}
+  name: {{ .Release.Name }}-netflix
 spec:
   type: {{ .Values.service.type }}
   ports:
-    - port: {{ .Values.service.port }}
-      targetPort: http
-      protocol: TCP
-      name: http
+  - port: {{ .Values.service.port }}
+    targetPort: 80
   selector:
-    {{- include "argocdhelm.selectorLabels" . | nindent 4 }}
+    app: netflix
