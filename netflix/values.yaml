@@ -1,6 +1,6 @@
 replicaCount: 2
 image:
-  repository: abayomijos/netflix
+  repository: devabayomi/netflix
   tag: latest
   pullPolicy: Always
 service:
