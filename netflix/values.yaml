@@ -9,4 +9,4 @@ service:
   targetPort: 3000
 ingress:
   enabled: true
-  host: netflix.darra.name.ng
+  host: netflix.giftedadura.co.uk
