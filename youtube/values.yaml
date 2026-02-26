@@ -1,13 +1,12 @@
 replicaCount: 2
-
 image:
   repository: devabayomi/youtube
   tag: latest
-  pullPolicy: IfNotPresent
-
+  pullPolicy: Always
 service:
   type: ClusterIP
   port: 80
-
+  targetPort: 3000
 ingress:
-  host: youtube.darra.name.ng
+  enabled: true
+  host: youtube.giftedadura.co.uk
