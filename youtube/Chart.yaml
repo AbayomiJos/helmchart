@@ -1,4 +1,0 @@
-apiVersion: v2
-name: youtube
-description: Helm chart for gymWebsite
-version: 0.1.0
