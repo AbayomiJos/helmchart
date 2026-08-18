@@ -1,7 +1,7 @@
 replicaCount: 2
 image:
   repository: devabayomi/netflix
-  tag: latest
+  tag: 738a7895
   pullPolicy: Always
 service:
   type: ClusterIP
