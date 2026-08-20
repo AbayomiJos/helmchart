@@ -9,4 +9,4 @@ service:
   targetPort: 3000
 ingress:
   enabled: true
-  host: youtube.giftedadura.co.uk
+  host: youtube.devopsin.name.ng
