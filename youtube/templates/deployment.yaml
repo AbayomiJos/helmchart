@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}-youtube
+  name: {{ .Release.Name }}-netflix
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: youtube
+      app: netflix
   template:
     metadata:
       labels:
-        app: youtube
+        app: netflix
     spec:
       containers:
-      - name: youtube
+      - name: netflix
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
