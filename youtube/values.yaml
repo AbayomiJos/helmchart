@@ -1,12 +1,12 @@
 replicaCount: 2
 image:
-  repository: devabayomi/youtube
-  tag: e6d9c032
+  repository: devabayomi/fitness
+  tag: latest
   pullPolicy: Always
 service:
   type: ClusterIP
   port: 80
-  targetPort: 3000
+  targetPort: 4000
 ingress:
   enabled: true
-  host: youtube.devopsin.name.ng
+  host: fitness.devopsin.name.ng
